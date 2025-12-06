@@ -166,7 +166,7 @@ Esto permite:
 
 ## 🧪 Testing
 
-Los tests se ejecutan con **Vitest**, usando configuración personalizada:
+Los tests se ejecutan con **Vitest**:
 
 ```bash
 npm test
