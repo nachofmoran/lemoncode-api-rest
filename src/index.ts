@@ -13,12 +13,6 @@ app.use("/api/houses", houseApi);
 app.listen(ENV.PORT, async () => {
   if (!ENV.IS_API_MOCK) {
     await dbServer.connect(ENV.MONGODB_URL);
-    // const houses = await dbServer.db
-    //   .collection("listingsAndReviews")
-    //   .find({}, { projection: { name: 1 } })
-    //   .limit(10)
-    //   .toArray();
-    // console.log({ houses });
     console.log("Running DataBase");
   } else {
     console.log("Running Mock API");
