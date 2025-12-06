@@ -2,7 +2,7 @@ export interface HouseApi {
   id: string;
   name: string;
   summary: string;
-  address: AddressApi;
+  address: string;
   bedrooms: number;
   beds: number;
   bathrooms: number;
@@ -16,6 +16,6 @@ export interface ReviewApi {
   comments: string;
 }
 
-interface AddressApi {
-  street: string;
-}
+// interface AddressApi {
+//   street: string;
+// }

@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 export interface House {
-  _id: string;
+  _id: ObjectId;
   name: string;
   summary: string;
   address: Address;
@@ -10,8 +12,8 @@ export interface House {
 }
 
 export interface Review {
-  _id: string;
-  date: Date;
+  _id: string | ObjectId;
+  date: Date | string;
   reviewer_name: string;
   comments: string;
 }

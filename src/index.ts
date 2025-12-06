@@ -1,5 +1,5 @@
-import { createRestApiServer } from "#core/servers/index.js";
-import { houseApi } from "#pods/house/house.api.js";
+import { createRestApiServer, dbServer } from "#core/servers/index.js";
+import { houseApi } from "#pods/house/index.js";
 import { ENV } from "#core/constants/index.js";
 
 const app = createRestApiServer();
@@ -10,6 +10,18 @@ app.get("/", (req, res) => {
 
 app.use("/api/houses", houseApi);
 
-app.listen(ENV.PORT, () => {
+app.listen(ENV.PORT, async () => {
+  if (!ENV.IS_API_MOCK) {
+    await dbServer.connect(ENV.MONGODB_URL);
+    // const houses = await dbServer.db
+    //   .collection("listingsAndReviews")
+    //   .find({}, { projection: { name: 1 } })
+    //   .limit(10)
+    //   .toArray();
+    // console.log({ houses });
+    console.log("Running DataBase");
+  } else {
+    console.log("Running Mock API");
+  }
   console.log(`Server ready at port ${ENV.PORT}`);
 });

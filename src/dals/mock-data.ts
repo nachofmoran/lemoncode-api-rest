@@ -1,4 +1,5 @@
 import { House } from "./house/index.js";
+import { ObjectId } from "mongodb";
 
 export interface DB {
   houses: House[];
@@ -7,7 +8,7 @@ export interface DB {
 export const db: DB = {
   houses: [
     {
-      _id: "1",
+      _id: new ObjectId(),
       name: "Horto flat with small garden",
       summary:
         "One bedroom + sofa-bed in quiet and bucolic neighbourhood right next t…",
@@ -19,19 +20,19 @@ export const db: DB = {
       beds: 3,
       reviews: [
         {
-          _id: "101",
+          _id: new ObjectId(),
           date: new Date("09/11/1998"),
           reviewer_name: "Pepe",
           comments: "Our stay was great",
         },
         {
-          _id: "102",
+          _id: new ObjectId(),
           date: new Date("09/12/1993"),
           reviewer_name: "Marisa",
           comments: "Our stay was not great",
         },
         {
-          _id: "103",
+          _id: new ObjectId(),
           date: new Date("09/01/1998"),
           reviewer_name: "Laura",
           comments: "Nice place",
@@ -39,7 +40,7 @@ export const db: DB = {
       ],
     },
     {
-      _id: "2",
+      _id: new ObjectId(),
       name: "Small flat",
       summary: "One bedroom bucolic neighbourhood right next the station",
       address: {
@@ -50,19 +51,19 @@ export const db: DB = {
       beds: 3,
       reviews: [
         {
-          _id: "201",
+          _id: new ObjectId(),
           date: new Date("09/11/1998"),
           reviewer_name: "Pepe",
           comments: "Our stay was great",
         },
         {
-          _id: "202",
+          _id: new ObjectId(),
           date: new Date("09/12/1993"),
           reviewer_name: "Marisa",
           comments: "Our stay was not great",
         },
         {
-          _id: "203",
+          _id: new ObjectId(),
           date: new Date("09/01/1998"),
           reviewer_name: "Laura",
           comments: "Nice place",
@@ -70,7 +71,7 @@ export const db: DB = {
       ],
     },
     {
-      _id: "3",
+      _id: new ObjectId(),
       name: "Big apartment with small garden",
       summary:
         "Two bedroom + sofa-bed in quiet and bucolic neighbourhood right next t…",
@@ -82,19 +83,19 @@ export const db: DB = {
       beds: 3,
       reviews: [
         {
-          _id: "301",
+          _id: new ObjectId(),
           date: new Date("09/11/1998"),
           reviewer_name: "Pepe",
           comments: "Our stay was great",
         },
         {
-          _id: "302",
+          _id: new ObjectId(),
           date: new Date("09/12/1993"),
           reviewer_name: "Marisa",
           comments: "Our stay was not great",
         },
         {
-          _id: "303",
+          _id: new ObjectId(),
           date: new Date("09/01/1998"),
           reviewer_name: "Laura",
           comments: "Nice place",
@@ -102,7 +103,7 @@ export const db: DB = {
       ],
     },
     {
-      _id: "4",
+      _id: new ObjectId(),
       name: "Flat",
       summary:
         "One bedroom + sofa-bed in quiet and bucolic neighbourhood right next t…",
@@ -114,19 +115,19 @@ export const db: DB = {
       beds: 3,
       reviews: [
         {
-          _id: "401",
+          _id: new ObjectId(),
           date: new Date("09/11/1998"),
           reviewer_name: "Pepe",
           comments: "Our stay was great",
         },
         {
-          _id: "402",
+          _id: new ObjectId(),
           date: new Date("09/12/1993"),
           reviewer_name: "Marisa",
           comments: "Our stay was not great",
         },
         {
-          _id: "403",
+          _id: new ObjectId(),
           date: new Date("09/01/1998"),
           reviewer_name: "Laura",
           comments: "Nice place",
@@ -134,7 +135,7 @@ export const db: DB = {
       ],
     },
     {
-      _id: "5",
+      _id: new ObjectId(),
       name: "Big studio",
       summary:
         "Three bedroom + sofa-bed in quiet and bucolic neighbourhood right next t…",
@@ -146,19 +147,19 @@ export const db: DB = {
       beds: 3,
       reviews: [
         {
-          _id: "501",
+          _id: new ObjectId(),
           date: new Date("09/11/1998"),
           reviewer_name: "Pepe",
           comments: "Our stay was great",
         },
         {
-          _id: "502",
+          _id: new ObjectId(),
           date: new Date("09/12/1993"),
           reviewer_name: "Marisa",
           comments: "Our stay was not great",
         },
         {
-          _id: "503",
+          _id: new ObjectId(),
           date: new Date("09/01/1998"),
           reviewer_name: "Laura",
           comments: "Nice place",
@@ -166,7 +167,7 @@ export const db: DB = {
       ],
     },
     {
-      _id: "6",
+      _id: new ObjectId(),
       name: "Small studio",
       summary: "One bedroom noisy neighbourhood right next to the stadium",
       address: {
@@ -177,19 +178,19 @@ export const db: DB = {
       beds: 3,
       reviews: [
         {
-          _id: "601",
+          _id: new ObjectId(),
           date: new Date("09/11/1998"),
           reviewer_name: "Francesco",
           comments: "Our stay was great",
         },
         {
-          _id: "602",
+          _id: new ObjectId(),
           date: new Date("09/12/1993"),
           reviewer_name: "Andrea",
           comments: "Our stay was not great",
         },
         {
-          _id: "603",
+          _id: new ObjectId(),
           date: new Date("09/01/1998"),
           reviewer_name: "Emilia",
           comments: "Nice place",
@@ -197,7 +198,7 @@ export const db: DB = {
       ],
     },
     {
-      _id: "7",
+      _id: new ObjectId(),
       name: "Big flat",
       summary: "6 bedroom house",
       address: {
@@ -208,19 +209,19 @@ export const db: DB = {
       beds: 3,
       reviews: [
         {
-          _id: "071",
+          _id: new ObjectId(),
           date: new Date("09/11/1998"),
           reviewer_name: "Pepe",
           comments: "Our stay was great",
         },
         {
-          _id: "702",
+          _id: new ObjectId(),
           date: new Date("09/12/1993"),
           reviewer_name: "Marisa",
           comments: "Our stay was not great",
         },
         {
-          _id: "703",
+          _id: new ObjectId(),
           date: new Date("09/01/1998"),
           reviewer_name: "Laura",
           comments: "Nice place",
