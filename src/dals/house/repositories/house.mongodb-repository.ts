@@ -69,4 +69,41 @@ export const mongoDBRepository: HouseRepository = {
     }
     return reviewToInsert;
   },
+  updateHouse: async (id: string, partialHouse: Partial<House>) => {
+    const allowedFields = [
+      "name",
+      "summary",
+      "bedrooms",
+      "beds",
+      "bathrooms",
+      "address",
+    ];
+
+    // Convertimos partialHouse a entries, filtramos campos válidos
+    const updateData = Object.entries(partialHouse)
+      .filter(([key]) => allowedFields.includes(key))
+      .reduce((acc, [key, value]) => {
+        if (key === "address" && value && typeof value === "object") {
+          // actualizar address.street si viene
+          if ("street" in value) {
+            return { ...acc, ["address.street"]: value.street };
+          }
+          return acc;
+        }
+
+        return { ...acc, [key]: value };
+      }, {});
+
+    const result = await dbServer.db
+      .collection<House>("listingsAndReviews")
+      .updateOne({ _id: new ObjectId(id) }, { $set: updateData });
+
+    if (result.matchedCount === 0) {
+      throw new Error(`House with id ${id} not found`);
+    }
+
+    return await dbServer.db
+      .collection<House>("listingsAndReviews")
+      .findOne({ _id: new ObjectId(id) });
+  },
 };

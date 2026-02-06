@@ -6,6 +6,8 @@
   "scripts": {
     "start": "run-p -l type-check:watch start:dev start:local-db",
     "start:dev": "tsx --require dotenv/config --watch src/index.ts",
+    "start:console-runners": "run-p type-check:watch console-runners start:local-db",
+    "console-runners": "tsx --require dotenv/config --watch src/console-runners/index.ts",
     "start:local-db": "docker compose up -d",
     "type-check": "tsc --noEmit --preserveWatchOutput",
     "type-check:watch": "npm run type-check -- --watch",
@@ -22,13 +24,17 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
     "mongodb": "^6.20.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/prompts": "^2.4.9",
     "dotenv": "^17.2.1",
     "npm-run-all": "^4.1.5",
+    "prompts": "^2.4.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "vitest": "^4.0.8"

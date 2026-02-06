@@ -20,7 +20,7 @@ export const mapHouseFromModelToApi = (
   summary: house.summary,
   bedrooms: house.bedrooms,
   beds: house.beds,
-  bathrooms: house.bathrooms,
+  bathrooms: Number(house.bathrooms),
   reviews: house.reviews?.map(mapReviewFromModelToApi),
 });
 

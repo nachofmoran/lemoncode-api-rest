@@ -6,7 +6,7 @@ import {
   mapReviewFromApiToModel,
   mapReviewFromModelToApi,
 } from "./house.mappers.js";
-
+import { authorizationMiddleware } from "#core/security/index.js";
 export const houseApi = Router();
 
 houseApi
@@ -20,7 +20,7 @@ houseApi
       next(error);
     }
   })
-  .get("/:id", async (req, res, next) => {
+  .get("/:id", authorizationMiddleware(["admin"]), async (req, res, next) => {
     try {
       const { id } = req.params;
       const houseId = Number(id);
@@ -30,12 +30,37 @@ houseApi
       next(error);
     }
   })
-  .post("/review/:id", async (req, res, next) => {
+  .post(
+    "/review/:id",
+    authorizationMiddleware(["admin"]),
+    async (req, res, next) => {
+      try {
+        const review = mapReviewFromApiToModel(req.body);
+        const { id } = req.params;
+        const newReview = await houseRepository.saveReview(id, review);
+        res.status(201).send(mapReviewFromModelToApi(newReview));
+      } catch (error) {
+        next(error);
+      }
+    }
+  )
+  .patch("/:id", authorizationMiddleware(["admin"]), async (req, res, next) => {
     try {
-      const review = mapReviewFromApiToModel(req.body);
       const { id } = req.params;
-      const newReview = await houseRepository.saveReview(id, review);
-      res.status(201).send(mapReviewFromModelToApi(newReview));
+      //const houseId = Number(id);
+
+      const partialHouseData = req.body;
+
+      const updatedHouse = await houseRepository.updateHouse(
+        id,
+        partialHouseData
+      );
+
+      if (!updatedHouse) {
+        return res.status(404).send({ message: "House not found" });
+      }
+
+      res.send(mapHouseFromModelToApi(updatedHouse));
     } catch (error) {
       next(error);
     }

@@ -3,7 +3,7 @@ import { House, Review } from "../house.model.js";
 import { db } from "../../mock-data.js";
 import { ObjectId } from "mongodb";
 
-const updateHouse = (id: string, review: Review) => {
+const updateReview = (id: string, review: Review) => {
   db.houses = db.houses.map((b) => {
     if (b._id.toHexString() === id) {
       b.reviews.push(review);
@@ -29,6 +29,32 @@ const paginateHouseList = (
   return paginatedHouseList;
 };
 
+const updateHouseDetail = (id: string, partialHouse: Partial<House>): House => {
+  let updatedHouse: House = null;
+
+  db.houses = db.houses.map((house) => {
+    if (house._id.toHexString() === id) {
+      const { reviews: _, ...safePartialHouse } = partialHouse;
+
+      updatedHouse = {
+        ...house,
+        ...safePartialHouse,
+        address: {
+          ...house.address,
+          ...(safePartialHouse.address ?? {}),
+        },
+        reviews: house.reviews,
+      };
+
+      return updatedHouse;
+    }
+
+    return house;
+  });
+
+  return updatedHouse;
+};
+
 export const mockRepository: HouseRepository = {
   getHouseList: async (page?: number, pageSize?: number) =>
     paginateHouseList(db.houses, page, pageSize),
@@ -36,7 +62,13 @@ export const mockRepository: HouseRepository = {
     db.houses.find((b) => b._id.toHexString() === id),
   saveReview: async (id: string, review: Review) => {
     if (db.houses.some((b) => b._id.toHexString() === id))
-      return updateHouse(id, review);
+      return updateReview(id, review);
     return null;
+  },
+  updateHouse: async (id: string, house: Partial<House>) => {
+    if (!db.houses.some((b) => b._id.toHexString() === id)) {
+      return null;
+    }
+    return updateHouseDetail(id, house);
   },
 };
