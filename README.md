@@ -101,7 +101,7 @@ Esto ejecuta en paralelo:
 
 ## 📡 Endpoints disponibles
 
-### **GET /api/house?page=1&pageSize=10**
+### **GET /api/houses?page=1&pageSize=10**
 
 Devuelve una lista de casas paginada.
 
@@ -124,13 +124,13 @@ Devuelve una lista de casas paginada.
 
 ---
 
-### **GET /api/house/:id**
+### **GET /api/houses/:id**
 
 Devuelve una casa por su identificador.
 
 ---
 
-### **POST /api/house/review/:id**
+### **POST /api/houses/review/:id**
 
 Inserta una nueva review en la casa indicada.
 
@@ -138,7 +138,7 @@ Inserta una nueva review en la casa indicada.
 
 ```json
 {
-  "reviewer_name": "John Doe",
+  "reviewer_name": "María Pérez",
   "comments": "Great stay!"
 }
 ```
