@@ -1,3 +1,10 @@
+function getEnvVariable(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Environment variable ${name} is not defined`);
+  }
+  return value;
+}
 export const ENV = {
   IS_PRODUCTION: process.env.NODE_ENV === "production",
   PORT: Number(process.env.PORT),
@@ -5,5 +12,6 @@ export const ENV = {
   CORS_ORIGIN: process.env.CORS_ORIGIN,
   CORS_METHODS: process.env.CORS_METHODS,
   IS_API_MOCK: process.env.IS_API_MOCK === "true",
-  MONGODB_URL: process.env.MONGODB_URL,
+  //MONGODB_URL: process.env.MONGODB_URL,
+  MONGODB_URL: getEnvVariable("MONGODB_URL"),
 };
