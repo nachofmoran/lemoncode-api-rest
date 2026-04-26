@@ -8,6 +8,8 @@
     "start:dev": "tsx --require dotenv/config --watch src/index.ts",
     "start:console-runners": "tsx --require dotenv/config --watch src/console-runners/index.ts",
     "start:local-db": "docker compose up -d",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc --project tsconfig.prod.json",
     "type-check": "tsc --noEmit --preserveWatchOutput",
     "type-check:watch": "npm run type-check -- --watch",
     "test": "vitest run -c ./config/test/config.ts",
@@ -32,6 +34,7 @@
     "dotenv": "^17.2.1",
     "npm-run-all": "^4.1.5",
     "prompts": "^2.4.2",
+    "rimraf": "^6.1.3",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "vitest": "^4.0.8"
